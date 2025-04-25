@@ -78,23 +78,30 @@ def draw_heat_map():
 
 
     # 12
-    corr = None
+    corr = df_heat.corr()
+
+
 
     # 13
-    mask = None
+    mask = np.triu(np.ones_like(corr, dtype=bool))
 
 
 
     # 14
-    #fig, ax = None
+    fig, ax = plt.subplots(figsize=(10, 8))
 
     # 15
+    sns.heatmap(corr, annot=True, fmt=".2f", cmap='coolwarm', center=0)
+    plt.title("Correlation Matrix")
+    plt.show()
+
+
 
 
 
     # 16
-    #fig.savefig('heatmap.png')
-    #return fig
+    fig.savefig('heatmap.png')
+    return fig
 
 #draw_cat_plot()
 draw_heat_map()
