@@ -4,12 +4,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # 1
-df = None
-
+df = pd.read_csv('medical_examination.csv')
 # 2
-df['overweight'] = None
+df['BMI'] = df['weight'] / ((df['height'] / 100) ** 2)
+
+df['overweight'] = (df['BMI'] > 25).astype(int)
+
+print(df)
+
 
 # 3
+# Normalize cholesterol
+df['cholesterol'] = (df['cholesterol'] > 1).astype(int)
+
+# Normalize gluc
+df['gluc'] = (df['gluc'] > 1).astype(int)
+
+print(df)
 
 
 # 4
@@ -58,3 +69,4 @@ def draw_heat_map():
     # 16
     fig.savefig('heatmap.png')
     return fig
+
